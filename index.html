@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <title>Rock Paper Sissors</title>
+  </head>
+  <body>
+    <header class="container-fluid">
+      <div class="row bg-primary text-light p-3">
+        <div class="col-12 text-center bg-primary text-light">
+          <h1>Rock Paper Sissors</h1>
+        </div>
+      </div>
+    </header>
+
+    <main class="container-fluid">
+      <div class="row bg-light">
+        <div class="col-5 offset-1 text-center">
+          <div id="score" class="bg-dark text-light p-3 m-3 shadow"></div>
+        </div>
+        <div class="col-5 text-center">
+          <div
+            id="computer-score"
+            class="bg-dark text-light p-3 m-3 shadow"
+          ></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-center">
+          <div id="buttons"></div>
+        </div>
+        <div class="col-12">
+          <div id="display-winner" class="text-center m-5 p-5 card shadow">
+            <h2>Choose your wepon...</h2>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="container-fluid">
+      <div class="footer"></div>
+    </footer>
+    <script src="main.js"></script>
+  </body>
+</html>
