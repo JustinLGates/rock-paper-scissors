@@ -7,11 +7,15 @@ let humanScore = 0;
 let computerScore = 0;
 
 let choices = [
-  { name: "rock", beats: "sissors" },
-  { name: "paper", beats: "rock" },
-  { name: "sissors", beats: "paper" },
+  { name: "rock", beats: ["sissors", "lizard"] },
+  { name: "paper", beats: ["rock", "spock"] },
+  { name: "sissors", beats: ["paper", "lizard"] },
+  { name: "spock", beats: ["sissors", "rock"] },
+  { name: "lizard", beats: ["spock", "paper"] },
 ];
-
+function randChar() {
+  return choices[randomChoice(choices.length - 1)];
+}
 function pick(choice) {
   let canBeat = choices.find((c) => c.name == choice).beats;
   console.log("player has selected: " + choice);
@@ -20,12 +24,11 @@ function pick(choice) {
 }
 
 function addButtons() {
-  let template = `<div class="mt-5">`;
+  let template = "";
   for (let i = 0; i < choices.length; i++) {
     const choice = choices[i];
-    template += `<span class=" p-5 m-5 shadow shadow bg-primary"><button class="btn btn-dark m-4" onclick="pick('${choice.name}')">${choice.name}</button></span>`;
+    template += `<div class="col-6 col-lg-4 d-flex justify-content-center"><button class="btn m-3 p-2 btn-dark"onclick="pick('${choice.name}')">${choice.name}</button></div>`;
   }
-  template += `</div>`;
   document.getElementById("buttons").innerHTML = template;
 }
 addButtons();
@@ -57,10 +60,16 @@ function computerChoice() {
 function didPlayerWin(playersChoice, canBeat) {
   let computersSelection = computerChoice();
   console.log("computer selected: " + computersSelection.name);
-  if (computersSelection.name === canBeat) {
+  if (
+    computersSelection.name === canBeat[0] ||
+    computersSelection.name === canBeat[1]
+  ) {
     displayTheWinner("Human", playersChoice, computersSelection.name);
     humanScore++;
-  } else if (playersChoice === computersSelection.beats) {
+  } else if (
+    playersChoice === computersSelection.beats[0] ||
+    playersChoice === computersSelection.beats[1]
+  ) {
     displayTheWinner("Computer", computersSelection.name, playersChoice);
     computerScore++;
   } else {
@@ -74,7 +83,7 @@ function displayTheWinner(winner = "", wc = "", lc = "") {
   if (winner !== "tie") {
     document.getElementById(
       "display-winner"
-    ).innerHTML = `<h1 class="text-center" >${winner} is the winner. ${wc} beats ${lc} </h1>`;
+    ).innerHTML = `<h1 class="text-center" >${winner} is the winner ${wc} beats ${lc} </h1>`;
   } else {
     document.getElementById(
       "display-winner"
